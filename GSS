@@ -1,0 +1,193 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "Anargya Hub Gym League",
+   Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+   LoadingTitle = "Anargya Hub",
+   LoadingSubtitle = "by Anargya",
+   ShowText = "Script", -- for mobile users to unhide Rayfield, change if you'd like
+   Theme = "Ocean", -- Check https://docs.sirius.menu/rayfield/configuration/themes
+
+   ToggleUIKeybind = "K", -- The keybind to toggle the UI visibility (string like "K" or Enum.KeyCode)
+
+   DisableRayfieldPrompts = false,
+   DisableBuildWarnings = false, -- Prevents Rayfield from emitting warnings when the script has a version mismatch with the interface.
+
+   -- ScriptID = "sid_xxxxxxxxxxxx", -- Your Script ID from developer.sirius.menu — enables analytics, managed keys, and script hosting
+
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = nil, -- Create a custom folder for your hub/game
+      FileName = "Big Hub"
+   },
+
+   Discord = {
+      Enabled = false, -- Prompt the user to join your Discord server if their executor supports it
+      Invite = "noinvitelink", -- The Discord invite code, do not include Discord.gg/. E.g. Discord.gg/ABCD would be ABCD
+      RememberJoins = true -- Set this to false to make them join the Discord every time they load it up
+   },
+
+   KeySystem = false, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "Untitled",
+      Subtitle = "Key System",
+      Note = "No method of obtaining the key is provided", -- Use this to tell the user how to get a key
+      FileName = "Key", -- It is recommended to use something unique, as other scripts using Rayfield may overwrite your key file
+      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = {"Hello"} -- List of keys that the system will accept, can be RAW file links (pastebin, github, etc.) or simple strings ("hello", "key22")
+   }
+})
+
+local Tab = Window:CreateTab("Main", 4483362458) -- Title, Image
+
+local Toggle = Tab:CreateToggle({
+   Name = "Train Arms",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file; make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   -- The function that takes place when the toggle is pressed
+   -- The variable (Value) is a boolean on whether the toggle is true or false
+   end,
+})
+
+local Tab = Window:CreateTab("Hatch n Farm", 4483362458) -- Title, Image
+
+local Section = Tab:CreateSection("Hatch Eggs")
+
+local SelectedEggs = {}
+local AutoDraw = false
+
+local EggList = {
+    ["Egg 1"] = 7000001,
+    ["Egg 2"] = 7000002,
+    ["Egg 3"] = 7000003,
+    ["Egg 4"] = 7000004,
+    ["Egg 5"] = 7000005,
+    ["Egg 6"] = 7000006,
+    ["Egg 7"] = 7000007,
+    ["Egg 8"] = 7000008,
+    ["Egg 9"] = 7000009,
+    ["Egg 10"] = 7000010,
+    ["Egg 11"] = 7000011,
+    ["Egg 12"] = 7000012,
+    ["Egg 13"] = 7000013,
+    ["Egg 14"] = 7000014,
+    ["Egg 15"] = 7000015,
+    ["Egg 16"] = 7000016,
+    ["Egg 17"] = 7000017,
+    ["Egg 18"] = 7000018,
+    ["Egg 19"] = 7000019,
+    ["Egg 20"] = 7000020,
+    ["Egg 21"] = 7000021,
+    ["Egg 22"] = 7000022,
+    ["Egg 23"] = 7000023,
+    ["Egg 24"] = 7000024,
+    ["Egg 25"] = 7000025,
+    ["Egg 26"] = 7000026,
+    ["Egg 27"] = 7000027,
+    ["Egg 28"] = 7000028,
+    ["Egg 29"] = 7000029,
+    ["Egg 30"] = 7000030,
+    ["Egg 31"] = 7000031,
+    ["Egg 32"] = 7000032,
+    ["Egg 33"] = 7000033,
+}
+
+Tab:CreateDropdown({
+    Name = "Select Eggs",
+    Options = {
+        "Egg 1","Egg 2","Egg 3","Egg 4","Egg 5","Egg 6","Egg 7","Egg 8","Egg 9","Egg 10",
+        "Egg 11","Egg 12","Egg 13","Egg 14","Egg 15","Egg 16","Egg 17","Egg 18","Egg 19","Egg 20",
+        "Egg 21","Egg 22","Egg 23","Egg 24","Egg 25","Egg 26","Egg 27","Egg 28","Egg 29","Egg 30",
+        "Egg 31","Egg 32","Egg 33"
+    },
+    CurrentOption = {},
+    MultipleOptions = true,
+    Flag = "EggSelect",
+
+    Callback = function(Options)
+        SelectedEggs = Options
+    end,
+})
+
+Tab:CreateToggle({
+    Name = "Auto Draw",
+    CurrentValue = false,
+    Flag = "AutoDraw",
+
+    Callback = function(Value)
+        AutoDraw = Value
+    end,
+})
+
+task.spawn(function()
+    local DrawHero = game:GetService("ReplicatedStorage")
+        :WaitForChild("Tool")
+        :WaitForChild("DrawUp")
+        :WaitForChild("Msg")
+        :WaitForChild("DrawHero")
+
+    while true do
+        if AutoDraw and #SelectedEggs > 0 then
+            for _, eggName in ipairs(SelectedEggs) do
+                if not AutoDraw then
+                    break
+                end
+
+                local eggId = EggList[eggName]
+
+                if eggId then
+                    pcall(function()
+                        DrawHero:InvokeServer(eggId, 3)
+                    end)
+                end
+
+                task.wait(0.6)
+            end
+        else
+            task.wait(0.1)
+        end
+    end
+end)
+
+local Section = Tab:CreateSection("Farm Competitions")
+
+local AutoEvent = false
+
+Tab:CreateToggle({
+   Name = "Auto Competitions",
+   CurrentValue = false,
+   Flag = "Toggle1",
+
+   Callback = function(Value)
+      AutoEvent = Value
+   end,
+})
+
+task.spawn(function()
+    local RemoteEvent = game:GetService("ReplicatedStorage")
+        :WaitForChild("Msg")
+        :WaitForChild("RemoteEvent")
+
+    while true do
+        if AutoEvent then
+            RemoteEvent:FireServer("\229\143\130\229\138\160\230\175\148\232\181\155")
+
+            for i = 1, 100 do
+                if not AutoEvent then
+                    break
+                end
+                task.wait(0.1)
+            end
+
+            if AutoEvent then
+                RemoteEvent:FireServer("\232\183\179\232\191\135\230\175\148\232\181\155")
+            end
+
+            task.wait(0.2)
+        else
+            task.wait(0.1)
+        end
+    end
+end)
