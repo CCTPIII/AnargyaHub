@@ -41,15 +41,335 @@ local Window = Rayfield:CreateWindow({
 
 local Tab = Window:CreateTab("Main", 4483362458) -- Title, Image
 
+local AutoTrainChest = false
+
+local Toggle = Tab:CreateToggle({
+   Name = "Train Chest",
+   CurrentValue = false,
+   Flag = "ToggleTrainChest",
+
+   Callback = function(Value)
+      AutoTrainChest = Value
+   end,
+})
+
+task.spawn(function()
+    local RemoteEvent = game:GetService("ReplicatedStorage")
+        :WaitForChild("Msg")
+        :WaitForChild("RemoteEvent")
+
+    local Setting = game:GetService("ReplicatedStorage")
+        :WaitForChild("ServerMsg")
+        :WaitForChild("Setting")
+
+    while true do
+        if AutoTrainChest then
+            pcall(function()
+                RemoteEvent:FireServer(
+                    "StartTrain",
+                    workspace:WaitForChild("Scene")
+                        :WaitForChild("1")
+                        :WaitForChild("Training equipment")
+                        :WaitForChild("\229\141\167\230\142\1682")
+                )
+            end)
+
+            task.wait(0.3)
+
+            pcall(function()
+                Setting:InvokeServer("isAutoClick", 1)
+            end)
+        else
+            task.wait(0.1)
+        end
+    end
+end)
+
+local AutoTrainAbs = false
+
+local Toggle = Tab:CreateToggle({
+   Name = "Train Abs",
+   CurrentValue = false,
+   Flag = "ToggleTrainAbs",
+
+   Callback = function(Value)
+      AutoTrainAbs = Value
+   end,
+})
+
+task.spawn(function()
+    local RemoteEvent = game:GetService("ReplicatedStorage")
+        :WaitForChild("Msg")
+        :WaitForChild("RemoteEvent")
+
+    local Setting = game:GetService("ReplicatedStorage")
+        :WaitForChild("ServerMsg")
+        :WaitForChild("Setting")
+
+    while true do
+        if AutoTrainAbs then
+            pcall(function()
+                RemoteEvent:FireServer(
+                    "StartTrain",
+                    workspace:WaitForChild("Scene")
+                        :WaitForChild("1")
+                        :WaitForChild("Training equipment")
+                        :WaitForChild("\232\133\185\233\131\168\229\141\183\232\133\1854")
+                )
+            end)
+
+            task.wait(0.3)
+
+            pcall(function()
+                Setting:InvokeServer("isAutoClick", 1)
+            end)
+        else
+            task.wait(0.1)
+        end
+    end
+end)
+
+local AutoTrainBack = false
+
+local Toggle = Tab:CreateToggle({
+   Name = "Train Back",
+   CurrentValue = false,
+   Flag = "ToggleTrainBack",
+
+   Callback = function(Value)
+      AutoTrainBack = Value
+   end,
+})
+
+task.spawn(function()
+    local RemoteEvent = game:GetService("ReplicatedStorage")
+        :WaitForChild("Msg")
+        :WaitForChild("RemoteEvent")
+
+    local Setting = game:GetService("ReplicatedStorage")
+        :WaitForChild("ServerMsg")
+        :WaitForChild("Setting")
+
+    while true do
+        if AutoTrainBack then
+            pcall(function()
+                RemoteEvent:FireServer(
+                    "StartTrain",
+                    workspace:WaitForChild("Scene")
+                        :WaitForChild("1")
+                        :WaitForChild("Training equipment")
+                        :WaitForChild("\230\139\137\229\138\155\229\153\1683")
+                )
+            end)
+
+            task.wait(0.3)
+
+            pcall(function()
+                Setting:InvokeServer("isAutoClick", 1)
+            end)
+        else
+            task.wait(0.1)
+        end
+    end
+end)
+
+local AutoTrainLeg = false
+
+local Toggle = Tab:CreateToggle({
+   Name = "Train Leg",
+   CurrentValue = false,
+   Flag = "ToggleTrainLeg",
+
+   Callback = function(Value)
+      AutoTrainLeg = Value
+   end,
+})
+
+task.spawn(function()
+    local RemoteEvent = game:GetService("ReplicatedStorage")
+        :WaitForChild("Msg")
+        :WaitForChild("RemoteEvent")
+
+    local Setting = game:GetService("ReplicatedStorage")
+        :WaitForChild("ServerMsg")
+        :WaitForChild("Setting")
+
+    while true do
+        if AutoTrainLeg then
+            pcall(function()
+                RemoteEvent:FireServer(
+                    "StartTrain",
+                    workspace:WaitForChild("Scene")
+                        :WaitForChild("1")
+                        :WaitForChild("Training equipment")
+                        :WaitForChild("\232\133\191\233\131\168\229\153\168\230\162\1763")
+                )
+            end)
+
+            task.wait(0.3)
+
+            pcall(function()
+                Setting:InvokeServer("isAutoClick", 1)
+            end)
+        else
+            task.wait(0.1)
+        end
+    end
+end)
+
+local AutoTrainArms = false
+
 local Toggle = Tab:CreateToggle({
    Name = "Train Arms",
    CurrentValue = false,
-   Flag = "Toggle1", -- A flag is the identifier for the configuration file; make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Flag = "ToggleTrainArms",
+
    Callback = function(Value)
-   -- The function that takes place when the toggle is pressed
-   -- The variable (Value) is a boolean on whether the toggle is true or false
+      AutoTrainArms = Value
    end,
 })
+
+task.spawn(function()
+    local RemoteEvent = game:GetService("ReplicatedStorage")
+        :WaitForChild("Msg")
+        :WaitForChild("RemoteEvent")
+
+    local Setting = game:GetService("ReplicatedStorage")
+        :WaitForChild("ServerMsg")
+        :WaitForChild("Setting")
+
+    while true do
+        if AutoTrainArms then
+            pcall(function()
+                RemoteEvent:FireServer(
+                    "StartTrain",
+                    workspace:WaitForChild("Scene")
+                        :WaitForChild("1")
+                        :WaitForChild("Training equipment")
+                        :WaitForChild("\230\137\139\232\135\1301")
+                )
+            end)
+
+            task.wait(0.3)
+
+            pcall(function()
+                Setting:InvokeServer("isAutoClick", 1)
+            end)
+        else
+            task.wait(0.1)
+        end
+    end
+end)
+
+local AutoTrainStamina = false
+
+local Toggle = Tab:CreateToggle({
+   Name = "Train Stamina",
+   CurrentValue = false,
+   Flag = "ToggleTrainStamina",
+
+   Callback = function(Value)
+      AutoTrainStamina = Value
+   end,
+})
+
+task.spawn(function()
+    local RemoteEvent = game:GetService("ReplicatedStorage")
+        :WaitForChild("Msg")
+        :WaitForChild("RemoteEvent")
+
+    local Setting = game:GetService("ReplicatedStorage")
+        :WaitForChild("ServerMsg")
+        :WaitForChild("Setting")
+
+    while true do
+        if AutoTrainStamina then
+            pcall(function()
+                RemoteEvent:FireServer(
+                    "StartTrain",
+                    workspace:WaitForChild("Scene")
+                        :WaitForChild("1")
+                        :WaitForChild("Training equipment")
+                        :WaitForChild("\232\128\144\229\138\1556")
+                )
+            end)
+
+            task.wait(0.3)
+
+            pcall(function()
+                Setting:InvokeServer("isAutoClick", 1)
+            end)
+        else
+            task.wait(0.1)
+        end
+    end
+end)
+
+local AutoCycleTrain = false
+
+Tab:CreateToggle({
+   Name = "Auto Cycle Train",
+   CurrentValue = false,
+   Flag = "AutoCycleTrain",
+
+   Callback = function(Value)
+      AutoCycleTrain = Value
+   end,
+})
+
+task.spawn(function()
+    local RemoteEvent = game:GetService("ReplicatedStorage")
+        :WaitForChild("Msg")
+        :WaitForChild("RemoteEvent")
+
+    local Setting = game:GetService("ReplicatedStorage")
+        :WaitForChild("ServerMsg")
+        :WaitForChild("Setting")
+
+    local Machines = {
+        "\230\137\139\232\135\1301", -- Arms
+        "\229\141\167\230\142\1682", -- Chest
+        "\230\139\137\229\138\155\229\153\1683", -- Back
+        "\232\133\185\233\131\168\229\141\183\232\133\1854", -- Abs
+        "\232\133\191\233\131\168\229\153\168\230\162\1763", -- Leg
+        "\232\128\144\229\138\1556", -- Stamina
+    }
+
+    while true do
+        if AutoCycleTrain then
+            for _, machine in ipairs(Machines) do
+                if not AutoCycleTrain then
+                    break
+                end
+
+                pcall(function()
+                    RemoteEvent:FireServer(
+                        "StartTrain",
+                        workspace:WaitForChild("Scene")
+                            :WaitForChild("1")
+                            :WaitForChild("Training equipment")
+                            :WaitForChild(machine)
+                    )
+                end)
+
+                task.wait(0.3)
+
+                pcall(function()
+                    Setting:InvokeServer("isAutoClick", 1)
+                end)
+
+                local elapsed = 0
+                while elapsed < 20 and AutoCycleTrain do
+                    task.wait(0.1)
+                    elapsed = elapsed + 0.1
+                end
+            end
+        else
+            task.wait(0.1)
+        end
+    end
+end)
+
 
 local Tab = Window:CreateTab("Hatch n Farm", 4483362458) -- Title, Image
 
@@ -191,3 +511,88 @@ task.spawn(function()
         end
     end
 end)
+
+local Section = Tab:CreateSection("Auto Fuse Pets")
+
+local AutoFuse = false
+
+local Toggle = Tab:CreateToggle({
+   Name = "Auto Fuse",
+   CurrentValue = false,
+   Flag = "AutoFuse",
+
+   Callback = function(Value)
+
+      AutoFuse = Value
+
+      if Value then
+         task.spawn(function()
+
+            local Player = game.Players.LocalPlayer
+
+            local RemoteFunction = game:GetService("ReplicatedStorage")
+                :WaitForChild("Msg")
+                :WaitForChild("RemoteFunction")
+
+            while AutoFuse do
+
+                local DidFuse = false
+
+                local ScrollPet = Player.PlayerGui
+                    .ScreenGui
+                    .Pet
+                    .Frame
+                    .ScrollPet
+
+                for _, pet in pairs(ScrollPet:GetChildren()) do
+
+                    if not AutoFuse then
+                        break
+                    end
+
+                    if tonumber(pet.Name) and pet:FindFirstChild("Button") then
+
+                        for _, c in pairs(getconnections(pet.Button.MouseButton1Click)) do
+                            c:Fire()
+                        end
+
+                        task.wait(0.5)
+
+                        local txt = Player.PlayerGui
+                            .ScreenGui
+                            .Pet
+                            .Frame
+                            .PetDetails
+                            .Buttons["合成"]
+                            .Frame
+                            .FuseCount.Text
+
+                        local current = tonumber(txt:match("(%d+)/"))
+
+                        if current and current >= 3 then
+
+                            RemoteFunction:InvokeServer(
+                                "FusePet",
+                                tonumber(pet.Name)
+                            )
+
+                            DidFuse = true
+
+                            task.wait(1)
+
+                            break
+                        end
+                    end
+                end
+
+                if not DidFuse then
+                    task.wait(3)
+                end
+
+            end
+
+         end)
+      end
+
+   end,
+})
